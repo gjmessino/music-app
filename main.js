@@ -25,3 +25,10 @@ async function fetchWebApi(endpoint, method, body) {
   });
   return await res.json();
 }
+
+async function searchArtists() {
+    artist = document.getElementById("artist").value;
+    const data = await fetchWebApi(`v1/search?q=${artist}&type=artist`, "GET");
+    return data.artists.items;
+    //const image 
+}
