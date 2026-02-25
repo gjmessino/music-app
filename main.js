@@ -2,7 +2,6 @@ const CLIENT_ID = //
 const CLIENT_SECRET = //
 const token = getToken();
 
-
 async function getToken(){
     let authString = btoa(CLIENT_ID + ":" + CLIENT_SECRET);
     const result = await fetch("https://accounts.spotify.com/api/token", {
@@ -27,11 +26,19 @@ async function fetchWebApi(endpoint, method, body) {
   return await res.json();
 }
 
-async function getMyTracksArtists(id) {
-    const data = await fetchWebApi(`v1/me/top/${id}`, "GET");
-    return data.items;
+async function getMyArtists() {
+    const data = await fetchWebApi(`v1/me/top/artists`, "GET");
+    const title = String(data.data.artists.id)
+    const title_element = document.getElementById("artist_name")
+    title_element.innerHTML = title
 }
 
+async function getMyTracksA() {
+    const data = await fetchWebApi(`v1/me/top/tracks`, "GET");
+    const title = String(data.data.tracks.id)
+    const title_element = document.getElementById("track_name")
+    title_element.innerHTML = title
+}
 async function searchArtists() {
     artist = document.getElementById("artist").value;
     const data = await fetchWebApi(`v1/search?q=${artist}&type=artist`, "GET");

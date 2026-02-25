@@ -12,14 +12,14 @@
 </header>
 <body>
     <div id = "sideBar">
-            <h3>Top Tracks</h3>
+            <h3 onClick = "getMyTracksA()">Top Tracks</h3>
             <h4 class = "track_name"></h4><br>
             <h4 class = "track_name"></h4><br>
             <h4 class = "track_name"></h4><br>
             <h4 class = "track_name"></h4><br>
             <h4 class = "track_name"></h4><br>
             <br>
-            <h3>Top Artists</h3>
+            <h3 onClick = "getMyArtists()">Top Artists</h3>
             <h4 class = "artist_name"></h4><br>
             <h4 class = "artist_name"></h4><br>
             <h4 class = "artist_name"></h4><br>
@@ -30,6 +30,11 @@
     </div>
     <div id = "mainContent">
         <input type = "text" id = "artist" placeholder = "Search for artists..."/>
-        <button id = "searchButton">Search</button>
-    <div id = "results"></div>
+        <button id = "searchButton" onClick = "searchArtists()">Search</button>
+        <div id = "results">
+            <h3 id = "Name"></h3>
+            <h4 id = "top_ablum"></h4>
+            <h4 id = "top_track"></h4>
+        </div>
+    </div>
 </body>
