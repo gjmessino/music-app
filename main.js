@@ -42,5 +42,10 @@ async function getMyTracksA() {
 async function searchArtists() {
     artist = document.getElementById("artist").value;
     const data = await fetchWebApi(`v1/search?q=${artist}&type=artist`, "GET");
-    return data.artists.items;
+    const name_element = document.getElementById("artist_name")
+    name_element.innerHTML = data.artists.items[0].name;
+    const album_element = document.getElementById("top_album")
+    album_element.innerHTML = data.artists.items[0].genres[0];
+    const track_element = document.getElementById("top_track")
+    track_element.innerHTML = data.artists.items[0].popularity;
 }
