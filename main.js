@@ -49,3 +49,24 @@ async function searchArtists() {
     const track_element = document.getElementById("top_track")
     track_element.innerHTML = data.artists.items[0].popularity;
 }
+async function searchSpotify(query, accessToken) {
+    const searchEndpoint = "https://api.spotify.com/v1/search";
+    const params = new URLSearchParams({
+        q: query,
+        type: 'track,artist,album', // Comma-separated list of types to search
+        limit: 10
+    });
+
+    const response = await fetch(`${searchEndpoint}?${params.toString()}`, {
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+}
